@@ -53,8 +53,6 @@ def pets_by_breed(pet_shop, breed_name)
 end
 
 def find_pet_by_name(pet_shop, pet_name)
-	
-	#pet_name_found = {}
 
 	for pet in pet_shop[:pets]
 		if pet[:name] == pet_name
@@ -128,9 +126,8 @@ def sell_pet_to_customer(pet_shop, new_pet, customer)
 	end
 
 	can_customer_afford = customer_can_afford_pet(customer, new_pet)
-	#pet_found_or_not = find_pet_by_name(pet_shop, new_pet[:name])
 
-	if can_customer_afford #&& pet_found_or_not != nil
+	if can_customer_afford
 
 		#Remove the pet from stock 
 		remove_pet_by_name(pet_shop, new_pet[:name])
