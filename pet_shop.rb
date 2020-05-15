@@ -122,19 +122,27 @@ end
 
 def sell_pet_to_customer(pet_shop, new_pet, customer)
 
-	binding.pry
 	can_customer_afford = customer_can_afford_pet(customer, new_pet)
-	pet_found_or_not = find_pet_by_name(pet_shop, new_pet)
-	
-	p can_customer_afford
-	p pet_found_or_not
+	pet_found_or_not = find_pet_by_name(pet_shop, new_pet[:name])
 
 	if can_customer_afford && pet_found_or_not != nil
-		add_pet_to_customer(customer, new_pet)
-	end
-	binding.pry
 
-	#return find_pet_by_name(new_pet)
+		#Remove the pet from stock 
+		remove_pet_by_name(pet_shop, new_pet[:name])
+
+		#Withdraw amount from customer account
+		remove_customer_cash(customer, new_pet[:price])
+
+		#Add withdrawal amount to shop account
+		add_or_remove_cash(pet_shop, new_pet[:price])
+
+		#Confirm transfer of pet to customer
+		add_pet_to_customer(customer, new_pet)
+
+		#Confirm increase of number of pets sold in pet shop
+		increase_pets_sold(pet_shop, customer[:pets].count())
+	end
+
 	return customer_pet_count(customer)
 	return pets_sold(pet_shop)
 	return customer_cash(customer)
