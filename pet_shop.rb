@@ -42,13 +42,13 @@ def pets_by_breed(pet_shop, breed_name)
 	
 	breed_array = []
 
-	for breed in pet_shop[:pets]
-		if breed[:breed] == breed_name
-			breed_array.push(breed[:breed])
+	for pet in pet_shop[:pets]
+		if pet[:breed] == breed_name
+			breed_array.push(pet[:breed])
 		end
 	end
 
-	return breed_array.length()
+	return breed_array.count()
 
 end
 
