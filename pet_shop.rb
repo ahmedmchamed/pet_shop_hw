@@ -54,12 +54,12 @@ end
 
 def find_pet_by_name(pet_shop, pet_name)
 	
-	pet_name_found = {}
+	#pet_name_found = {}
 
 	for pet in pet_shop[:pets]
 		if pet[:name] == pet_name
-			pet_name_found = pet
-			return pet_name_found
+			#pet_name_found = pet
+			return pet
 		end
 	end
 
@@ -122,10 +122,15 @@ end
 
 def sell_pet_to_customer(pet_shop, new_pet, customer)
 
-	can_customer_afford = customer_can_afford_pet(customer, new_pet)
-	pet_found_or_not = find_pet_by_name(pet_shop, new_pet[:name])
+	#If the pet isn't there don't bother doing anything
+	if new_pet == nil
+		return
+	end
 
-	if can_customer_afford && pet_found_or_not != nil
+	can_customer_afford = customer_can_afford_pet(customer, new_pet)
+	#pet_found_or_not = find_pet_by_name(pet_shop, new_pet[:name])
+
+	if can_customer_afford #&& pet_found_or_not != nil
 
 		#Remove the pet from stock 
 		remove_pet_by_name(pet_shop, new_pet[:name])
@@ -141,12 +146,13 @@ def sell_pet_to_customer(pet_shop, new_pet, customer)
 
 		#Confirm increase of number of pets sold in pet shop
 		increase_pets_sold(pet_shop, customer[:pets].count())
-	end
 
-	return customer_pet_count(customer)
-	return pets_sold(pet_shop)
-	return customer_cash(customer)
-	return total_cash(pet_shop)
+	else
+		customer_pet_count(customer)
+		pets_sold(pet_shop)
+		customer_cash(customer)
+		total_cash(pet_shop)
+	end
 
 end
 
