@@ -14,14 +14,8 @@ end
 
 def add_or_remove_cash(pet_shop, amount)
 
-	if amount > 0
 		pet_shop[:admin][:total_cash] += amount
-	end
-	if amount < 0
-		pet_shop[:admin][:total_cash] += amount
-	end
 
-	return pet_shop[:admin][:total_cash]
 end
 
 def pets_sold(pet_shop)
