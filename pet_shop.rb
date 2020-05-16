@@ -114,14 +114,15 @@ end
 
 def sell_pet_to_customer(pet_shop, new_pet, customer)
 
-	#If the pet isn't there don't bother doing anything
-	if new_pet == nil
-		return
-	end
+	#Another way of doing it
+	# if new_pet == nil
+	# 	return
+	# end
 
-	can_customer_afford = customer_can_afford_pet(customer, new_pet)
+	#This won't work if I don't have the preceding if block active
+	#can_customer_afford = customer_can_afford_pet(customer, new_pet)
 
-	if can_customer_afford
+	if new_pet != nil && customer_can_afford_pet(customer, new_pet) #can_customer_afford
 
 		#Remove the pet from stock 
 		remove_pet_by_name(pet_shop, new_pet[:name])
@@ -137,12 +138,7 @@ def sell_pet_to_customer(pet_shop, new_pet, customer)
 
 		#Confirm increase of number of pets sold in pet shop
 		increase_pets_sold(pet_shop, customer[:pets].count())
-
-	else
-		customer_pet_count(customer)
-		pets_sold(pet_shop)
-		customer_cash(customer)
-		total_cash(pet_shop)
+		
 	end
 
 end
