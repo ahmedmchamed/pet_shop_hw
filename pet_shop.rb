@@ -122,6 +122,7 @@ def sell_pet_to_customer(pet_shop, new_pet, customer)
 	#This won't work if I don't have the preceding if block active
 	#can_customer_afford = customer_can_afford_pet(customer, new_pet)
 
+	#And guarantees the first operand is evaluated first
 	if new_pet != nil && customer_can_afford_pet(customer, new_pet) #can_customer_afford
 
 		#Remove the pet from stock 
@@ -138,7 +139,7 @@ def sell_pet_to_customer(pet_shop, new_pet, customer)
 
 		#Confirm increase of number of pets sold in pet shop
 		increase_pets_sold(pet_shop, customer[:pets].count())
-		
+
 	end
 
 end
